@@ -31,10 +31,12 @@
         const copyBtn = document.getElementById("copy");
 
         ipmd.oninput = () =>{
-            const delLFCR = ipmd.value.replace(/(\r\n|\n|\r)/gm, "&#92;n");
-            const delLt = delLFCR.replace(/(<)/gm, "&lt;");
-            const delGt = delLt.replace(/(>)/gm, "&gt;");
-            opmd.innerHTML = delGt.replace(/(")/gm, `\"`);
+            const escape = (ipmd.value)
+            .replace(/(\r\n|\n|\r)/gm, "&#92;n")
+            .replace(/</gm, "&lt;")
+            .replace(/>/gm, "&gt;")
+            .replace(/"/gm, `&#92;"`);
+            opmd.innerHTML = escape;
             copyBtn.innerHTML = `<i class="bi bi-clipboard"></i> コピー`;
             if(opmd.innerHTML == "") opmd.innerHTML = `<span style="color: #6d6e6e; user-select: none;">One line MarkDown</span>`;
         };
