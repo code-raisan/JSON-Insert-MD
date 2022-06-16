@@ -31,7 +31,9 @@
         const copyBtn = document.getElementById("copy");
 
         ipmd.oninput = () =>{
-            opmd.innerHTML = ipmd.value.replace(/(\r\n|\n|\r)/gm, "&#92;n");
+            const delLFCR = ipmd.value.replace(/(\r\n|\n|\r)/gm, "&#92;n");
+            const delLt = delLFCR.replace(/(<)/gm, "&lt;");
+            opmd.innerHTML = delLt.replace(/(>)/gm, "&gt;");
             copyBtn.innerHTML = `<i class="bi bi-clipboard"></i> コピー`;
             if(opmd.innerHTML == "") opmd.innerHTML = `<span style="color: #6d6e6e; user-select: none;">One line MarkDown</span>`;
         };
