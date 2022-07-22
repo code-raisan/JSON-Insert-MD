@@ -33,9 +33,6 @@
         ipmd.oninput = () =>{
             const escape = (ipmd.value)
             .replace(/(\r\n|\n|\r)/gm, "&#92;n")
-            .replace(/</gm, "&lt;")
-            .replace(/>/gm, "&gt;")
-            .replace(/"/gm, `&#92;"`);
             opmd.innerHTML = escape;
             copyBtn.innerHTML = `<i class="bi bi-clipboard"></i> コピー`;
             if(opmd.innerHTML == "") opmd.innerHTML = `<span style="color: #6d6e6e; user-select: none;">One line MarkDown</span>`;
